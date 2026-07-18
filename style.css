@@ -1,0 +1,470 @@
+/* ============================================================
+   CSS Custom Properties — Light Mode (default)
+   Requirements: 2.4, 9.6
+   ============================================================ */
+
+:root {
+  /* Colors */
+  --color-bg:           #F0F7FF;
+  --color-surface:      #FFFFFF;
+  --color-text-primary: #1a2a3a;
+  --color-text-muted:   #5a7a9a;
+  --color-accent:       #1E90FF;
+  --color-accent-dark:  #1570CC;
+  --color-border:       #C8DDEF;
+  --color-completed:    #a0b8cc;
+  --hero-gradient:      linear-gradient(135deg, #1E3A5F 0%, #1E90FF 100%);
+
+  /* Spacing */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+
+  /* Typography */
+  --font-family:        'Segoe UI', system-ui, sans-serif;
+  --font-size-clock:    clamp(3rem, 10vw, 5.5rem);
+  --font-size-greeting: clamp(1rem, 3vw, 1.4rem);
+  --font-size-timer:    clamp(2rem, 6vw, 3.5rem);
+
+  /* Border radius */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  16px;
+
+  /* Shadow */
+  --shadow:     0 2px 8px rgba(30, 144, 255, 0.10);
+
+  /* Transition */
+  --transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================================
+   CSS Custom Properties — Dark Mode override
+   ============================================================ */
+
+[data-theme="dark"] {
+  /* Colors */
+  --color-bg:           #0d1b2a;
+  --color-surface:      #1a2e42;
+  --color-text-primary: #e8f4ff;
+  --color-text-muted:   #7aaccc;
+  --color-accent:       #4db8ff;
+  --color-accent-dark:  #1E90FF;
+  --color-border:       #2a4a6a;
+  --color-completed:    #3a5a7a;
+  --hero-gradient:      linear-gradient(135deg, #050e18 0%, #0d2d4a 100%);
+
+  /* Shadow */
+  --shadow:             0 2px 8px rgba(0, 0, 0, 0.40);
+}
+
+/* ============================================================
+   Base / Reset
+   Requirements: 2.1
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  transition: var(--transition);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   Header — sticky, flexbox
+   Requirements: 2.1, 2.2
+   ============================================================ */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-xl);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* ============================================================
+   Hero section — full-width gradient
+   Requirements: 2.1, 2.2
+   ============================================================ */
+
+#hero {
+  background: var(--hero-gradient);
+  text-align: center;
+  padding: var(--space-xl);
+  color: #ffffff;
+}
+
+#clock {
+  font-size: var(--font-size-clock);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+#date-display {
+  font-size: 1.1rem;
+  margin-top: var(--space-sm);
+  opacity: 0.85;
+}
+
+#greeting {
+  font-size: var(--font-size-greeting);
+  margin-top: var(--space-sm);
+  opacity: 0.95;
+}
+
+/* ============================================================
+   Main grid — 2 columns
+   Requirements: 2.2, 2.3
+   ============================================================ */
+
+#main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   Card styling — rounded corners, shadow
+   Requirements: 2.3
+   ============================================================ */
+
+#focus-timer-section,
+#task-section {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--space-lg);
+  transition: var(--transition);
+}
+
+#focus-timer-section h2,
+#task-section h2 {
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ============================================================
+   Timer display
+   Requirements: 3.1
+   ============================================================ */
+
+#timer-display {
+  font-size: var(--font-size-timer);
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-text-primary);
+  margin: var(--space-md) 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.timer-controls label {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   Forms / Inputs
+   ============================================================ */
+
+input[type="text"],
+input[type="url"],
+input[type="number"],
+select {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--color-accent);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+button {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: var(--font-family);
+  font-weight: 500;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--color-accent-dark);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#theme-toggle {
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 1.3rem;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+}
+
+#theme-toggle:hover {
+  background: var(--color-border);
+}
+
+/* ============================================================
+   Task section
+   Requirements: 3.2
+   ============================================================ */
+
+#task-form {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+}
+
+#task-input {
+  flex: 1;
+  min-width: 120px;
+}
+
+#task-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+#task-filter-buttons button {
+  font-size: 0.8rem;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-border);
+  color: var(--color-text-primary);
+}
+
+#task-filter-buttons button.active,
+#task-filter-buttons button:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+#task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: var(--space-xs);
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  transition: var(--transition);
+}
+
+/* Strikethrough styling for completed tasks */
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--color-completed);
+}
+
+.task-text {
+  flex: 1;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.task-category {
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  background: var(--color-accent);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.task-item button {
+  background: transparent;
+  color: var(--color-text-muted);
+  padding: var(--space-xs);
+  font-size: 0.9rem;
+}
+
+.task-item button:hover {
+  color: var(--color-accent);
+  background: var(--color-border);
+}
+
+/* ============================================================
+   Quick Links section — full-width below grid
+   Requirements: 3.3
+   ============================================================ */
+
+#quick-links-section {
+  padding: var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto var(--space-xl);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+#quick-links-section h2 {
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+#quick-link-form {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+}
+
+#quick-links-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* Quick link cards */
+.quick-link-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quick-link-card:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--color-accent);
+}
+
+.quick-link-label {
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+}
+
+.quick-link-card .delete-btn {
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  padding: 2px 4px;
+}
+
+.quick-link-card .delete-btn:hover {
+  color: #ee0033;
+  background: transparent;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+
+footer {
+  text-align: center;
+  padding: var(--space-md);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+#storage-warning {
+  color: #ee0033;
+  background: rgba(255, 0, 51, 0.08);
+  border: 1px solid rgba(255, 0, 51, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+}
+
+/* ============================================================
+   Responsive — single column on mobile
+   Requirements: 2.3
+   ============================================================ */
+
+@media (max-width: 768px) {
+  #main-grid {
+    grid-template-columns: 1fr;
+    padding: var(--space-md);
+  }
+
+  header {
+    padding: var(--space-sm) var(--space-md);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .header-controls {
+    flex-wrap: wrap;
+  }
+
+  #quick-links-section {
+    margin: 0 var(--space-md) var(--space-xl);
+  }
+}
